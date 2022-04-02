@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include <Transaction.h>
+#include <Account.h>
 
 TEST(Print, InFileStream)
 {

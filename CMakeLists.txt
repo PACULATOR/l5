@@ -7,12 +7,14 @@ project(banking)
 
 option(BUILD_TESTS "Build tests" ON)
 
+add_library(banking STATIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/banking/Account.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/banking/Transaction.cpp
+        )
 
-include_directories(
+target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/banking
 )
-
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/banking banking_lib)
 
 if(BUILD_TESTS)
     enable_testing()

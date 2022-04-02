@@ -1,0 +1,22 @@
+name: buildFormatter
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: git clone
+        uses: actions/checkout@v2
+      - name: build 
+        run: |
+          cmake -B _build
+          cd _build
+          make
+          make ./check
+          ./check

@@ -1,4 +1,4 @@
-name: buildFormatter
+name: build
 
 on:
   push:

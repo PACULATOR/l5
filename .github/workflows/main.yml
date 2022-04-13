@@ -37,9 +37,9 @@ jobs:
           sudo apt-get install -y lcov
       - name: run lcov
         run: |
-          lcov --capture --directory banking_lib_output/CMakeFiles/banking.dir/banking --output-file ./lcov.info
+          lcov --capture --directory _build/CMakeFiles/banking.dir/banking --output-file ./banking_cov.info
       - name: coveralls
         uses: coverallsapp/github-action@master
         with:
-            path-to-lcov: "./lcov.info"
+            path-to-lcov: "./banking_cov.info"
             github-token: ${{ secrets.github_token }}

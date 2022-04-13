@@ -40,6 +40,6 @@ jobs:
           lcov --capture --directory banking_lib_output/CMakeFiles/banking.dir/banking --output-file ./lcov.info
       - name: coveralls
         uses: coverallsapp/github-action@master
-          with:
-            path-to-lcov: "./lcov_filtered.info"
+        with:
+            path-to-lcov: "./lcov.info"
             github-token: ${{ secrets.github_token }}

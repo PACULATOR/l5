@@ -19,4 +19,27 @@ jobs:
           cmake -B _build
           cd _build
           make
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: git clone
+        uses: actions/checkout@v2
+      - name: testing
+        run: |
+          git submodule update --init --recursive
+          cmake -B _build
+          cd _build
+          make
           ./check
+      - name: lcov
+          run: |
+            sudo apt-get install -y lcov
+      - name: run lcov
+          run: |
+            lcov --capture --directory banking_lib_output/CMakeFiles/banking.dir/banking --output-file ./lcov.info
+      - name: coveralls
+          uses: coverallsapp/github-action@master
+            with:
+              path-to-lcov: "./lcov_filtered.info"
+              github-token: ${{ secrets.github_token }}

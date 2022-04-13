@@ -19,3 +19,4 @@ jobs:
           cmake -B _build
           cd _build
           make
+          ./check

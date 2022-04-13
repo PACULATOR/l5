@@ -3,9 +3,10 @@
 #include <Account.h>
 
 TEST(Transaction, account) {
-    Account Acc(100, 100);
+    Account Acc(101, 100);
     EXPECT_EQ(Acc.GetBalance(), 100);
-    EXPECT_EQ(Acc.id(), 100);
+    int id1 = Acc.id();
+    EXPECT_EQ(id1, 101);
 }
 
 TEST(Transaction, change_balance) {

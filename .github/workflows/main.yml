@@ -36,13 +36,13 @@ jobs:
           cd ..
       - name: lcov
         run: |
-          sudo pip install --user cpp-coveralls
           sudo apt-get install -y lcov
       - name: run lcov
         run: |
-          lcov --capture --directory _build/CMakeFiles/banking.dir/banking --output-file ./cov.info
+          lcov --capture --directory _build/CMakeFiles/banking.dir/banking --output-file ./lcov.info
+          lcov --remove ./lcov.info '/home/runner/work/lab05/lab05/third-party/gtest/*' -o ./lcov.info
       - name: coveralls
         uses: coverallsapp/github-action@master
         with:
-            path-to-lcov: "./cov.info"
+            path-to-lcov: "./lcov.info"
             github-token: ${{ secrets.github_token }}

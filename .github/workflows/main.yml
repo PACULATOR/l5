@@ -19,6 +19,7 @@ jobs:
           cmake -B _build
           cd _build
           make
+          cd ..
   tests:
     runs-on: ubuntu-latest
 
@@ -32,15 +33,16 @@ jobs:
           cd _build
           make
           ./check
+          cd ..
       - name: lcov
         run: |
           sudo pip install --user cpp-coveralls
           sudo apt-get install -y lcov
       - name: run lcov
         run: |
-          lcov --capture --directory _build/CMakeFiles/banking.dir/banking --output-file ./banking_cov.info
+          lcov --capture --directory _build/CMakeFiles/banking.dir/banking --output-file ./cov.info
       - name: coveralls
         uses: coverallsapp/github-action@master
         with:
-            path-to-lcov: "./banking_cov.info"
+            path-to-lcov: "./cov.info"
             github-token: ${{ secrets.github_token }}

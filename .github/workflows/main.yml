@@ -33,13 +33,13 @@ jobs:
           make
           ./check
       - name: lcov
-          run: |
-            sudo apt-get install -y lcov
+        run: |
+          sudo apt-get install -y lcov
       - name: run lcov
-          run: |
-            lcov --capture --directory banking_lib_output/CMakeFiles/banking.dir/banking --output-file ./lcov.info
+        run: |
+          lcov --capture --directory banking_lib_output/CMakeFiles/banking.dir/banking --output-file ./lcov.info
       - name: coveralls
-          uses: coverallsapp/github-action@master
-            with:
-              path-to-lcov: "./lcov_filtered.info"
-              github-token: ${{ secrets.github_token }}
+        uses: coverallsapp/github-action@master
+          with:
+            path-to-lcov: "./lcov_filtered.info"
+            github-token: ${{ secrets.github_token }}
